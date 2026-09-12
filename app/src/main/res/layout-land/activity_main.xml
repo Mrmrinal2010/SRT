@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity">
+
+    <!-- Camera Preview (Fills Screen) -->
+    <io.github.thibaultbee.streampack.ui.views.PreviewView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Container for all hideable UI elements -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/uiContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Top Header (Clean) -->
+        <LinearLayout
+            android:id="@+id/topHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="24dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="LIVE X"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+        </LinearLayout>
+
+        <!-- Right Side Floating Controls (Landscape format) -->
+        <!-- In landscape, we might place them in a horizontal line or a tighter vertical cluster -->
+        <LinearLayout
+            android:id="@+id/controlArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Audio/Sound Visualizer / Control -->
+            <io.github.thibaultbee.streampack.app.views.AudioVisualizerView
+                android:id="@+id/audioVisualizer"
+                android:layout_width="24dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp" />
+
+            <!-- Switch Camera -->
+            <ImageButton
+                android:id="@+id/btnSwitchCam"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="@color/white" />
+
+            <!-- Microphone Source -->
+            <ImageButton
+                android:id="@+id/btnAudioSources"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_btn_speak_now"
+                app:tint="@color/white" />
+
+            <!-- Mute Toggle -->
+            <ImageButton
+                android:id="@+id/btnMute"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@drawable/ic_mic_off"
+                app:tint="@color/white" />
+
+            <!-- Settings -->
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_menu_preferences"
+                app:tint="@color/white" />
+
+            <!-- Main Live Toggle -->
+            <ToggleButton
+                android:id="@+id/liveButton"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_live_circle"
+                android:textColor="@color/transparent"
+                android:textOff=""
+                android:textOn="" />
+        </LinearLayout>
+        
+        <!-- Connection Status (Bottom Center) -->
+        <TextView
+            android:id="@+id/tvLiveStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="STANDBY"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/bg_status_pill"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- TextViews kept for logic compatibility but hidden -->
+        <TextView
+            android:id="@+id/tvActiveAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvStatusDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+            
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Hide/Show Controls Toggle Button (Always Visible, Lower-Left) -->
+    <ImageButton
+        android:id="@+id/btnToggleHud"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_glass_card"
+        android:src="@drawable/ic_eye"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

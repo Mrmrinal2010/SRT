@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
+    <!-- Camera Preview (Fills Screen) -->
     <io.github.thibaultbee.streampack.ui.views.PreviewView
         android:id="@+id/preview"
         android:layout_width="match_parent"
@@ -15,135 +17,152 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ToggleButton
-        android:id="@+id/liveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/ic_live_button"
-        android:textColor="@color/white"
-        android:textOff=""
-        android:textOn=""
+    <!-- Container for all hideable UI elements -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/uiContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Top Header (Clean) -->
+        <LinearLayout
+            android:id="@+id/topHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="24dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="LIVE X"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+        </LinearLayout>
+
+        <!-- Right Side Floating Controls (Vertical Cluster) -->
+        <LinearLayout
+            android:id="@+id/controlArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topHeader"
+            app:layout_constraintVertical_bias="0.9">
+
+            <!-- Audio/Sound Visualizer / Control -->
+            <io.github.thibaultbee.streampack.app.views.AudioVisualizerView
+                android:id="@+id/audioVisualizer"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Switch Camera -->
+            <ImageButton
+                android:id="@+id/btnSwitchCam"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="@color/white" />
+
+            <!-- Microphone Source -->
+            <ImageButton
+                android:id="@+id/btnAudioSources"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_btn_speak_now"
+                app:tint="@color/white" />
+
+            <!-- Mute Toggle -->
+            <ImageButton
+                android:id="@+id/btnMute"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@drawable/ic_mic_off"
+                app:tint="@color/white" />
+
+            <!-- Settings -->
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:src="@android:drawable/ic_menu_preferences"
+                app:tint="@color/white" />
+
+            <!-- Main Live Toggle -->
+            <ToggleButton
+                android:id="@+id/liveButton"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_live_circle"
+                android:textColor="@color/transparent"
+                android:textOff=""
+                android:textOn="" />
+        </LinearLayout>
+        
+        <!-- Connection Status (Bottom Center) -->
+        <TextView
+            android:id="@+id/tvLiveStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="STANDBY"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/bg_status_pill"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- TextViews kept for logic compatibility but hidden -->
+        <TextView
+            android:id="@+id/tvActiveAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvStatusDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+            
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Hide/Show Controls Toggle Button (Always Visible, Lower-Left) -->
+    <ImageButton
+        android:id="@+id/btnToggleHud"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_glass_card"
+        android:src="@drawable/ic_eye"
+        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- 配信URL/パラメータを端末上で編集 -->
-    <EditText
-        android:id="@+id/serverUrl"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#CC000000"
-        android:textColor="@android:color/white"
-        android:textColorHint="#88FFFFFF"
-        android:textSize="11sp"
-        android:padding="8dp"
-        android:hint="srt://[ipv6]:5000?streamid=publish:car"
-        android:inputType="textNoSuggestions|textMultiLine"
-        android:maxLines="3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 設定: ビットレート(kbps) / 解像度 / fps -->
-    <LinearLayout
-        android:id="@+id/settingsRow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/serverUrl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <EditText
-            android:id="@+id/bitrateInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#CC000000"
-            android:textColor="@android:color/white"
-            android:textColorHint="#88FFFFFF"
-            android:textSize="11sp"
-            android:padding="6dp"
-            android:hint="kbps"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/resInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.4"
-            android:layout_marginStart="4dp"
-            android:background="#CC000000"
-            android:textColor="@android:color/white"
-            android:textColorHint="#88FFFFFF"
-            android:textSize="11sp"
-            android:padding="6dp"
-            android:hint="1280x720"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/fpsInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:layout_marginStart="4dp"
-            android:background="#CC000000"
-            android:textColor="@android:color/white"
-            android:textColorHint="#88FFFFFF"
-            android:textSize="11sp"
-            android:padding="6dp"
-            android:hint="fps"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <!-- 操作: 設定適用 / カメラ切替 -->
-    <LinearLayout
-        android:id="@+id/buttonRow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/settingsRow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/applyButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:text="設定適用" />
-
-        <Button
-            android:id="@+id/switchCamButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="4dp"
-            android:textSize="12sp"
-            android:text="カメラ切替" />
-    </LinearLayout>
-
-    <!-- 接続状態/エラー/統計を常時表示 -->
-    <TextView
-        android:id="@+id/statusText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#CC000000"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        android:padding="8dp"
-        android:text="待機中"
-        app:layout_constraintTop_toBottomOf="@id/buttonRow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- Brand colors -->
+    <color name="colorPrimary">#007BFF</color>
+    <color name="colorPrimaryVariant">#0056b3</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <color name="colorSecondary">#00E5FF</color>
+    <color name="colorSecondaryVariant">#00B8D4</color>
+    <color name="colorOnSecondary">#000000</color>
+
+    <!-- UI Backgrounds -->
+    <color name="colorBackground">#050814</color>
+    <color name="colorSurface">#0B132B</color>
+    <color name="colorSurfaceLight">#1C2541</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+    <color name="colorOnSurfaceSubtle">#88FFFFFF</color>
+    
+    <!-- Status Colors -->
+    <color name="colorError">#FF3B30</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorSuccess">#00E676</color>
+    <color name="colorLive">#FF0000</color>
+    
+    <!-- Translucent Overlays -->
+    <color name="glass_bg">#1AFFFFFF</color>
+    <color name="glass_bg_dark">#40000000</color>
+    <color name="glass_stroke">#33FFFFFF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay_dark">#99000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -1,5 +1,33 @@
 <resources>
-    <string name="app_name">CarStream</string>
+    <string name="app_name">Live X</string>
     <string name="denied">Denied</string>
     <string name="accept">Accept</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="srt_connection_title">SRT Connection</string>
+    <string name="server_host">Host/IP</string>
+    <string name="server_port">Port</string>
+    <string name="stream_id">Stream ID</string>
+    <string name="latency">Latency (ms)</string>
+    
+    <string name="video_settings_title">Video Settings</string>
+    <string name="resolution">Resolution (e.g. 1280x720)</string>
+    <string name="bitrate">Bitrate (kbps)</string>
+    <string name="fps">FPS</string>
+    
+    <string name="apply_settings">Apply Settings</string>
+    <string name="settings_saved">Settings Saved</string>
+
+    <!-- Main Screen -->
+    <string name="status_ready">Ready</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_live">LIVE</string>
+    <string name="status_reconnecting">Reconnecting…</string>
+    <string name="status_stopped">Stopped</string>
+    <string name="status_error">Error: %s</string>
+    
+    <string name="front_camera">Front Camera</string>
+    <string name="rear_camera">Rear Camera</string>
+    <string name="no_camera">No camera found: %s</string>
 </resources>

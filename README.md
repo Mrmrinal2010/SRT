@@ -1,29 +1,29 @@
-# CarStream
+# Live X (SRT Streaming HUD)
 
-A no-watermark Android **IRL / mobile live-streaming sender** built for drop-resistant cellular streaming. Camera → H.264/AAC → **SRT**, with auto-reconnect, adaptive bitrate, in-app settings and camera switching.
-
-Built on the excellent [StreamPack](https://github.com/ThibaultBee/StreamPack) library (and its boilerplate), with a connection layer tuned for unreliable cellular links — the "sender" end of a personal **no-dropout in-car streaming** rig.
+## Overview
+This project is a customized, professional, and futuristic HUD-based SRT mobile broadcasting application.
+It has been remixed, redesigned, and further developed by **Mrinal Jana** for professional audio and video streaming.
 
 ## Features
-- **Camera → SRT** over cellular (IPv6 or IPv4), no watermark.
-- **Auto-reconnect** on drop (exponential backoff) so a momentary signal loss doesn't end the stream.
-- **Adaptive bitrate (ABR)** — encoder bitrate drops automatically when the link gets thin (SRT bitrate regulator).
-- **In-app settings**: bitrate / resolution / fps, persisted.
-- **Front/back camera switch**, keep-screen-on, editable SRT URL with on-screen connection status.
+- **Futuristic Cyberpunk HUD**: Clean, professional, minimal interface.
+- **Dynamic Audio Visualizer**: Custom hardware-accelerated sound bar that accurately monitors microphone peaks.
+- **Clean Feed Mode**: A one-tap toggle to hide all UI elements, offering an unobstructed camera feed.
+- **Advanced Audio Source Manager**: Seamlessly stream audio from built-in microphones or external USB headsets/microphones.
+- **SRT Engine**: Professional-grade low latency SRT video and audio transmission for OBS/MediaMTX ingestion.
 
-## Build
-CLI (no Android Studio needed):
-```sh
-export JAVA_HOME=/path/to/jdk-21
-./gradlew assembleDebug
-# APK -> app/build/outputs/apk/debug/app-debug.apk
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
+## Technology Stack
+- **Platform**: Android (Kotlin)
+- **Engine**: StreamPack core (Apache License 2.0)
+- **Video Protocol**: SRT (Secure Reliable Transport)
 
-## Use
-Open the app, set the SRT URL (the `streamid` is whatever your receiver expects, e.g. `publish:car`), press the live button. Pair it with an SRT receiver such as [MediaMTX](https://github.com/bluenviron/mediamtx). For automatic failover across multiple links, see [mediamtx-failover-controller](https://github.com/akagifreeez/mediamtx-failover-controller).
+## Credits & Attribution
+**Created & Remixed by Mrinal Jana**
 
-> Note from building on StreamPack 3.1.x: the SRT URL parser accepts `streamid` / `latency` / `mss` etc. but **not** `conntimeo` (it rejects the whole URL) — set connection timeouts via the API, not the URL.
+*Original Project Components:*
+The core SRT protocol engine and transmission pipeline are powered by [StreamPack](https://github.com/ThibaultBee/StreamPack) by ThibaultBee. Original project components remain subject to their respective licenses (see `LICENSE.md`). This version has been remixed, customized, redesigned, and further developed by Mrinal Jana.
 
-## Credit & License
-Based on [StreamPack-boilerplate](https://github.com/ThibaultBee/StreamPack-boilerplate) by Thibault Beyou. Licensed under **Apache-2.0** — see [LICENSE.md](LICENSE.md).
+## License
+Copyright 2026 Mrinal Jana (UI/UX, Visualizer, HUD customizations)
+Original Engine Copyright 2021 Thibault B.
+
+Licensed under the Apache License, Version 2.0.
