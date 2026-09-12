@@ -49,83 +49,91 @@
                 android:letterSpacing="0.1" />
         </LinearLayout>
 
-        <!-- Right Side Floating Controls (Landscape format) -->
-        <!-- In landscape, we might place them in a horizontal line or a tighter vertical cluster -->
+        <!-- Bottom-Left Floating Controls (Landscape format) -->
         <LinearLayout
             android:id="@+id/controlArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginEnd="32dp"
+            android:orientation="vertical"
+            android:layout_marginStart="96dp"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <!-- Audio/Sound Visualizer / Control -->
-            <io.github.thibaultbee.streampack.app.views.AudioVisualizerView
-                android:id="@+id/audioVisualizer"
-                android:layout_width="24dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="24dp" />
+            <!-- Top Row: Mic, Sound -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
 
-            <!-- Switch Camera -->
-            <ImageButton
-                android:id="@+id/btnSwitchCam"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_glass_card"
-                android:src="@android:drawable/ic_menu_camera"
-                app:tint="@color/white" />
+                <ImageButton
+                    android:id="@+id/btnAudioSources"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_glass_card"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    app:tint="@color/white" />
 
-            <!-- Microphone Source -->
-            <ImageButton
-                android:id="@+id/btnAudioSources"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_glass_card"
-                android:src="@android:drawable/ic_btn_speak_now"
-                app:tint="@color/white" />
+                <io.github.thibaultbee.streampack.app.views.AudioVisualizerView
+                    android:id="@+id/audioVisualizer"
+                    android:layout_width="100dp"
+                    android:layout_height="24dp" />
+            </LinearLayout>
 
-            <!-- Mute Toggle -->
-            <ImageButton
-                android:id="@+id/btnMute"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_glass_card"
-                android:src="@drawable/ic_mic_off"
-                app:tint="@color/white" />
+            <!-- Bottom Row: Start, Settings, Mute, Camera -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <!-- Settings -->
-            <ImageButton
-                android:id="@+id/btnSettings"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/bg_glass_card"
-                android:src="@android:drawable/ic_menu_preferences"
-                app:tint="@color/white" />
+                <ToggleButton
+                    android:id="@+id/liveButton"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_live_circle"
+                    android:textColor="@color/transparent"
+                    android:textOff=""
+                    android:textOn="" />
 
-            <!-- Main Live Toggle -->
-            <ToggleButton
-                android:id="@+id/liveButton"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/bg_live_circle"
-                android:textColor="@color/transparent"
-                android:textOff=""
-                android:textOn="" />
+                <ImageButton
+                    android:id="@+id/btnSettings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_glass_card"
+                    android:src="@android:drawable/ic_menu_preferences"
+                    app:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/btnMute"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_glass_card"
+                    android:src="@drawable/ic_mic_off"
+                    app:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/btnSwitchCam"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_glass_card"
+                    android:src="@android:drawable/ic_menu_camera"
+                    app:tint="@color/white" />
+            </LinearLayout>
         </LinearLayout>
         
-        <!-- Connection Status (Bottom Center) -->
+        <!-- Connection Status (Bottom Right) -->
         <TextView
             android:id="@+id/tvLiveStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:text="STANDBY"
             android:textColor="@color/white"
@@ -134,7 +142,6 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- TextViews kept for logic compatibility but hidden -->
